@@ -1,6 +1,6 @@
 const res = require("express/lib/response")
 
-function problemController(req,res) {
+function pingController(req,res) {
     res.json({
         message: "problem controller is up"
     })
@@ -38,5 +38,5 @@ module.exports = {
     getProblems,
     deleteProblem,
     updateProblem,
-    problemController
+    pingController
 }

@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 
-app.use('/api', apiRouter)
+app.use('/api', apiRouter) //if any request comes and it starts with api, we mapto apiRouter
 app.get("/ping", (req,res) => {
     res.json({message:"Problem Service is alive"});
 })
