@@ -23,7 +23,7 @@ function addProblem(req,res,next) {
 
 function getProblem(req,res) {
      try{
-        //not implemented
+        //not implementedd
         throw new NotImplemented('addProblem')
     }
 
