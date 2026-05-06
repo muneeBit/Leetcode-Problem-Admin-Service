@@ -1,18 +1,24 @@
 const res = require("express/lib/response")
 
 const {StatusCodes} = require("http-status-codes")
+const NotImplemented = require("../errors/notImplemented.error")
 
-function pingController(req,res) {
+function pingController(req,res,next) {
     return res.json({
         message: "problem controller is up"
     })
 }
 
 
-function addProblem(req,res) {
-    return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-        message: "Not Implemented"
-    })
+function addProblem(req,res,next) {
+    try{
+        //not implemented
+        throw new NotImplemented('addProblem')
+    }
+
+    catch(error) {
+        next(error)
+    }
 }
 
 function getProblem(req,res) {
