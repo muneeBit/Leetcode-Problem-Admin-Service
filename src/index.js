@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const  {BaseError}  = require('./errors/base.error')
-
 const {PORT} = require('./config/server.config');
 const apiRouter = require('./routes');
 const errorHandler = require('./utils/errorHandler');
+const connectToDb = require('./config/db.config');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
@@ -18,7 +19,10 @@ app.get("/ping", (req,res) => {
 
 app.use(errorHandler); //last middleware
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log("Server is listening at PORT:", PORT);
-    
+    await connectToDb();
+    console.log("Successfully connected to Database");
+
+
 })  
