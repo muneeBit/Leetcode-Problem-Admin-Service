@@ -1,4 +1,5 @@
-const { Problem }= require("../models")
+const { Problem }= require("../models");
+const { errorHandler } = require("../utils");
 
 class ProblemRepository {
     
@@ -6,7 +7,7 @@ class ProblemRepository {
     async createProblem (problemData) {
 
         try {
-        const problem = await Problem.create({
+            const problem = await Problem.create({
             title: problemData.title,
             description: problemData.description,
             testCases: problemData.testCases? problemData.testCases : []
@@ -19,6 +20,20 @@ class ProblemRepository {
         throw error;
 
     }
+    }
+
+    async getAllProblems() {
+        try {
+
+        const problem = await Problem.find({});
+        return problem;
+
+        }
+
+        catch(error) {
+            console.log(error);
+            throw error;            
+        }
     }
     
 
