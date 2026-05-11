@@ -21,7 +21,7 @@ async function addProblem(req,res,next) {
         console.log("incoming request body", req.body);
 
         const newproblem = await problemService.createProblem(req.body);
-        res.status(StatusCodes.CREATED).json({
+        return res.status(StatusCodes.CREATED).json({
             success: "true",
             message: "successfully created a new problem",
             error: {},
@@ -36,10 +36,15 @@ async function addProblem(req,res,next) {
     }
 }
 
-function getProblem(req,res) {
+async function getAllProblems(req,res,next) {
      try{
-        //not implementedd
-        throw new NotImplemented('addProblem')
+        const response = await problemService.getAllProblems();
+        return res.status(StatusCodes.OK).json({
+            success:true,
+            message:"successfully fetched all the problems",
+            error: {},
+            data: response
+        })
     }
 
     catch(error) {
@@ -48,7 +53,7 @@ function getProblem(req,res) {
 
 }
 
-function getProblems(req,res) {
+function getProblem(req,res) {
      try{
         //not implemented
         throw new NotImplemented('addProblem')
@@ -90,8 +95,8 @@ function updateProblem(req,res) {
 
 module.exports = {
     addProblem,
+    getAllProblems,
     getProblem,
-    getProblems,
     deleteProblem,
     updateProblem,
     pingController
