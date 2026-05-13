@@ -51,9 +51,21 @@ class ProblemService {
     }
 
     async deleteProblem(problemId) {
+       try {
+        const deletedProblem = await this.problemRepository.deleteProblem(problemId);
+        return deletedProblem;
+       }
+       
+       catch(error) {
+        console.log(error);
+        throw error;
+       }
+    }
+
+    async updateProblem(problemId, problemData) {
         try {
-            const deletedProblem = await this.problemRepository.deleteProblem(problemId);
-            return deletedProblem;
+            const updatedProblem = await this.problemRepository.updateProblem(problemId, problemData);
+            return updatedProblem;
         }
 
         catch(error) {

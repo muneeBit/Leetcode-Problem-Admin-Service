@@ -24,9 +24,8 @@ app.get("/ping", (req,res) => {
 app.use(errorHandler); //last middleware
 
 app.listen(PORT, async () => {
-    console.log("Server is listening at PORT:", PORT);
+    console.log("Server is listening to PORT: ", PORT)
     await connectToDb();
     console.log("Successfully connected to Database");
-
 
 })  

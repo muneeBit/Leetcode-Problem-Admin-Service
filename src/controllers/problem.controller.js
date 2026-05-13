@@ -76,10 +76,9 @@ async function deleteProblem(req,res, next) {
         const deletedProblem = await problemService.deleteProblem(req.params.id);
         return res.status(StatusCodes.OK).json({
             success: true,
-            message: "problem deleted successfully",
-            error: {},
-            data: deletedProblem
-
+            messsage: "problem deleted successfully",
+            error:{},
+            data: deletedProblem 
         })
     }
 
@@ -89,11 +88,17 @@ async function deleteProblem(req,res, next) {
 
 
 }
-
-function updateProblem(req,res) {
+// not sure of update api though, --> re-check
+async function updateProblem(req,res,next) {
     try{
-        //not implemented
-        throw new NotImplemented('addProblem');
+        const updatedProblem  = await problemService.updateProblem(req.params.id,req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message:"problem updated succesfully",
+            error:{},
+            data: updatedProblem
+
+        })
     }
 
     catch(error) {
