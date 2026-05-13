@@ -2,6 +2,7 @@ const { Problem }= require("../models");
 const { errorHandler } = require("../utils");
 const NotFound = require('../errors/notfound.error');
 const { deleteProblem } = require("../controllers/problem.controller");
+const { ProblemService } = require("../services");
 
 class ProblemRepository {
     
@@ -64,6 +65,23 @@ class ProblemRepository {
             console.log(error);
             throw error;
         }
+    }
+
+    async updateProblem(id,problemData) {
+
+        try {
+            console.log(problemData)
+            const updatedProblem = Problem.findByIdAndUpdate(id,problemData);
+            console.log("problemData: ", problemData);
+            console.log("updatedProblem: ", updatedProblem);
+            return updatedProblem;
+        }
+
+        catch(error) {
+            console.log(error);
+            throw err
+        }
+        
     }
     
 
