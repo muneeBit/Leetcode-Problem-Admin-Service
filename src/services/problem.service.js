@@ -1,4 +1,4 @@
-const { deleteProblem } = require("../controllers/problem.controller");
+
 const sanitizeMarkdownContent = require("../utils/markdownSanitizer")
 
 class ProblemService {

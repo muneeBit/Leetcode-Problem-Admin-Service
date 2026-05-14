@@ -1,8 +1,8 @@
 const { Problem }= require("../models");
 const { errorHandler } = require("../utils");
 const NotFound = require('../errors/notfound.error');
-const { deleteProblem } = require("../controllers/problem.controller");
 const { ProblemService } = require("../services");
+const logger = require('../config/logger.config')
 
 class ProblemRepository {
     
@@ -55,8 +55,14 @@ class ProblemRepository {
     }
 
     async deleteProblem(id) {
+
+         
         try {
            const deletedProblem = await Problem.findByIdAndDelete(id);
+           if(!deletedProblem) {
+            logger.error(`Problem with id: ${id} not found in the dB`)
+            throw new NotFound("Problem", id);
+           }
            return deletedProblem;
 
         }
@@ -71,7 +77,7 @@ class ProblemRepository {
 
         try {
             console.log(problemData)
-            const updatedProblem = Problem.findByIdAndUpdate(id,problemData);
+            const updatedProblem = Problem.findByIdAndUpdate(id,problemData, { new: true});
             console.log("problemData: ", problemData);
             console.log("updatedProblem: ", updatedProblem);
             return updatedProblem;
